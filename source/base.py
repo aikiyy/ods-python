@@ -30,6 +30,18 @@ class BaseList(BaseCollection):
         for x in iterable:
             self.append(x)
 
+    def add_first(self, x):
+        return self.add(0, x)
+
+    def add_last(self, x):
+        return self.add(self.size(), x)
+
+    def remove_first(self):
+        return self.remove(0)
+
+    def remove_last(self):
+        return self.remove(self.size() - 1)
+
     def __iter__(self):
         for i in range(len(self)):
             yield(self.get(i))
