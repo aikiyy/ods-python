@@ -78,3 +78,12 @@ class SLList(BaseList):
         for _ in range(self.n - 2):
             u = u.next
         return u.x
+
+    def set(self, i, x):
+        if i < 0 or i > self.n: raise IndexError()
+        u = self.head
+        for _ in range(i):
+            u = u.next
+        y = u.x
+        u.x = x
+        return y
