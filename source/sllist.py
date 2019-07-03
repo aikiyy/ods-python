@@ -68,5 +68,13 @@ class SLList(BaseList):
         w = self.new_node(x)
         w.next = u.next
         u.next = w
+        if self.n == i:
+            self.tail = w
         self.n += 1
         return True
+
+    def secondLast(self):
+        u = self.head
+        for _ in range(self.n - 2):
+            u = u.next
+        return u.x
