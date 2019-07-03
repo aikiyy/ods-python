@@ -87,3 +87,17 @@ class SLList(BaseList):
         y = u.x
         u.x = x
         return y
+
+    def reverse(self):
+        u = self.head
+        f = self.head
+        p = u.next
+        for _ in range(self.n - 1):
+            q = p.next
+            p.next = u
+            if q == self.tail:
+                break
+            u, p = p, q
+        q.next = p
+        self.head = q
+        self.tail = f
