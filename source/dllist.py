@@ -89,3 +89,12 @@ class DLList(BaseList):
         while u != self.dummy:
             yield u.x
             u = u.next
+
+    def checkSize(self):
+        u = self.dummy.next
+        n = 0
+        while u is not self.dummy:
+            u = u.next
+            n += 1
+        if n != self.n:
+            raise Exception

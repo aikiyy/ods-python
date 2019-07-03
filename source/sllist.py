@@ -101,3 +101,12 @@ class SLList(BaseList):
         q.next = p
         self.head = q
         self.tail = f
+
+    def checkSize(self):
+        u = self.head
+        n = 1
+        while u is not self.tail:
+            u = u.next
+            n += 1
+        if n != self.n:
+            raise Exception
