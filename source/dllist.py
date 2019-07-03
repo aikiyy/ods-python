@@ -98,3 +98,13 @@ class DLList(BaseList):
             n += 1
         if n != self.n:
             raise Exception
+
+    def isPalindrome(self):
+        u = self.dummy.next
+        p = self.dummy.prev
+        while u is not self.dummy and p is not self.dummy:
+            if u.x != p.x:
+                return False
+            u = u.next
+            p = p.prev
+        return True
