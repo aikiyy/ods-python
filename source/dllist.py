@@ -119,3 +119,9 @@ class DLList(BaseList):
                 u.next.prev = u.prev
             u = u.next
         return even_list
+
+    def reverse(self):
+        u = self.dummy
+        for _ in range(self.n + 1):
+            u.next, u.prev = u.prev, u.next
+            u = u.next
