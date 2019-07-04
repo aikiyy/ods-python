@@ -101,3 +101,10 @@ class DLList(BaseList):
     def truncate(self, i):
         if i < 0 or i > self.n: raise IndexError()
         self.get_node(i).prev.next = self.dummy
+
+    def absorb(self, l2):
+        if not isinstance(l2, DLList): raise Exception
+        l1 = l2
+        self.dummy.prev.next = l1.dummy.next
+        l1.dummy.prev.next = self.dummy
+        l2._initialize()
