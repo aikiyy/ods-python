@@ -97,3 +97,7 @@ class DLList(BaseList):
         self.dummy.prev = target_node.prev
         target_node.prev.next = self.dummy
         target_node.prev = self.dummy
+
+    def truncate(self, i):
+        if i < 0 or i > self.n: raise IndexError()
+        self.get_node(i).prev.next = self.dummy
