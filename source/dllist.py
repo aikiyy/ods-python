@@ -19,27 +19,6 @@ class DLList(BaseList):
         self.dummy.next = self.dummy
         self.dummy.prev = self.dummy
 
-    def new_node(self, x):
-        return SLList.Node(x)
-
-    def push(self, x):
-        u = self.new_node(x)
-        u.next = self.head
-        self.head = u
-        if self.n == 0:
-            self.tail = u
-        self.n += 1
-        return x
-
-    def pop(self):
-        if self.n == 0: return None
-        x = self.head.x
-        self.head = self.head.next
-        self.n -= 1
-        if self.n == 0:
-            self.tail = None
-        return x
-
     def get_node(self, i):
         if i < self.n / 2:
             p = self.dummy.next
@@ -108,3 +87,13 @@ class DLList(BaseList):
             u = u.next
             p = p.prev
         return True
+
+    def rotate(self, r):
+        self.dummy.next.prev = self.dummy.prev
+        self.dummy.prev.next = self.dummy.next
+
+        target_node = self.get_node(r % self.n)
+        self.dummy.next = target_node
+        self.dummy.prev = target_node.prev
+        target_node.prev.next = self.dummy
+        target_node.prev = self.dummy
