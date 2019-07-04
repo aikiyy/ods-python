@@ -108,3 +108,14 @@ class DLList(BaseList):
         self.dummy.prev.next = l1.dummy.next
         l1.dummy.prev.next = self.dummy
         l2._initialize()
+
+    def deal(self):
+        u = self.dummy.next
+        even_list = []
+        for i in range(self.n):
+            if i % 2 == 1:
+                even_list.append(u.x)
+                u.prev.next = u.next
+                u.next.prev = u.prev
+            u = u.next
+        return even_list
