@@ -45,3 +45,26 @@ class BaseList(BaseCollection):
     def __iter__(self):
         for i in range(len(self)):
             yield(self.get(i))
+
+
+class BaseSet(BaseCollection):
+    def __init__(self):
+        super(BaseSet, self).__init__()
+
+    def add_all(self, a):
+        for x in a:
+            self.add(x)
+
+    def __in__(self):
+        return self.find(x) is not None
+
+    def __eq__(self, a):
+        if len(a) != len(self): return False
+        for x in self:
+            if x not in a: return False
+        for x in a:
+            if x not in self: return False
+        return True
+
+    def __ne__(self, a):
+        return not self == a
