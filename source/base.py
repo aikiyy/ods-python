@@ -42,6 +42,20 @@ class BaseList(BaseCollection):
     def remove_last(self):
         return self.remove(self.size() - 1)
 
+    def index(self, x):
+        i = 0
+        for y in self:
+            if y == x:
+                return i
+            i += 1
+        return ValueError('%r is not in the list' % x)
+
+    def remove_value(self, x):
+        try:
+            return self.remove(self.index(x))
+        except ValueError:
+            return False
+
     def __iter__(self):
         for i in range(len(self)):
             yield(self.get(i))
