@@ -5,3 +5,4 @@ Open Data Structures
 
 ## 解いた練習問題
 - 問3.1 - 問3.12
+- 問6.6
