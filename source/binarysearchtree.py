@@ -117,6 +117,13 @@ class BinarySearchTree(BinaryTree, BaseSet):
             return True
         return False
 
+    def isBalanced(self, u):
+        left_size = self._size(u.left)
+        right_size = self._size(u.right)
+        if abs(left_size - right_size) <= 1:
+            return True
+        return False
+
     def __iter__(self):
         u = self.first_node()
         while u != self.nil:
