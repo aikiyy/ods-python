@@ -60,3 +60,21 @@ class BinaryTree(object):
             u = q.remove()
             if u.left != self.nil: q.add(u.left)
             if u.right != self.nil: q.add(u.right)
+
+    def first_node(self):
+        w = self.r
+        if w == self.nil: return self.nil
+        while w.left != self.nil:
+            w = w.left
+        return w
+
+    def next_node(self, w):
+        if w.right != self.nil:
+            w = w.right
+            while w.left != self.nil:
+                w = w.left
+        else:
+            while w.parent != self.nil and w.parent.left != w:
+                w = w.parent
+            w = w.parent
+        return w
