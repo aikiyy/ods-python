@@ -129,3 +129,37 @@ class BinarySearchTree(BinaryTree, BaseSet):
         while u != self.nil:
             yield u.x
             u = self.next_node(u)
+
+    def rotate_left(self, u):
+        w = u.right
+        w.parent = u.parent
+        if w.parent != self.nil:
+            if w.parent.left == u:
+                w.parent.left = w
+            else:
+                w.parent.right = w
+        u.right = w.left
+        if u.right != self.nil:
+            u.right.parent = u
+        u.parent = w
+        w.left = u
+        if u == self.r:
+            self.r = w
+            self.r.parent = self.nil
+
+    def rotate_right(self, u):
+        w = u.left
+        w.parent = u.parent
+        if w.parent != self.nil:
+            if w.parent.left == u:
+                w.parent.left = w
+            else:
+                w.parent.right = w
+        u.left = w.right
+        if u.left != self.nil:
+            u.left.parent = u
+        u.parent = w
+        w.right = u
+        if u == self.r:
+            self.r = w
+            self.r.parent = self.nil
