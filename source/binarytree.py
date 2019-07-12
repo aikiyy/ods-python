@@ -4,7 +4,7 @@ from arrayqueue import ArrayQueue
 
 class BinaryTree(object):
     class Node(object):
-        def __init__(self, x):
+        def __init__(self):
             self.left = None
             self.right = None
             self.parent = None

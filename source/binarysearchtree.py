@@ -10,7 +10,7 @@ Problem
 class BinarySearchTree(BinaryTree, BaseSet):
     class Node(BinaryTree.Node):
         def __init__(self, x):
-            super(BinaryTree.Node, self).__init__()
+            super().__init__()
             self.x = x
 
     def __init__(self, iterable=[], nil=None):
@@ -81,6 +81,10 @@ class BinarySearchTree(BinaryTree, BaseSet):
     def add(self, x):
         p = self._find_last(x)
         return self._add_child(p, self._new_node(x))
+
+    def add_node(self, u):
+        p = self._find_last(u.x)
+        return self._add_child(p, u)
 
     def splice(self, u):
         if u.left != self.nil:
