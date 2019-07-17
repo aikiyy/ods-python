@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 import random
-from utils import new_array
 from arraystack import ArrayStack
 from base import BaseSet
 
 w = 32
 
+
 class ChainedHashTable(BaseSet):
-    def __init__(self, iterrable = []):
+    def __init__(self, iterrable=[]):
         self._initialize()
         self.add_all(iterrable)
 
     def _initialize(self):
         self.d = 1
-        self.t = self._alloc_table(1<<self.d)
+        self.t = self._alloc_table(1 << self.d)
         self.z = self._random_odd_int()
         self.n = 0
 
     def _random_odd_int(self):
-        return random.randrange(1<<w) | 1
+        return random.randrange(1 << w) | 1
 
     def clear(self):
         pass
@@ -28,23 +28,26 @@ class ChainedHashTable(BaseSet):
 
     def _resize(self):
         self.d = 1
-        while (1 << self.d) <= self.n: self.d += 1
+        while (1 << self.d) <= self.n:
+            self.d += 1
         self.n = 0
         old_t = self.t
-        self.t = self._alloc_table(1<<self.d)
+        self.t = self._alloc_table(1 << self.d)
         for i in range(len(old_t)):
             for x in old_t[i]:
                 self.add(x)
 
     def add(self, x):
-        if self.find(x) is not None: return False
-        if self.n + 1 > len(self.t): self._resize()
+        if self.find(x) is not None:
+            return False
+        if self.n + 1 > len(self.t):
+            self._resize()
         self.t[self._hash(x)].append(x)
         self.n += 1
         return True
 
     def _hash(self, x):
-        return ((self.z * hash(x)) % (1<<w)) >> (w-self.d)
+        return ((self.z * hash(x)) % (1 << w)) >> (w-self.d)
 
     def remove(self, x):
         ell = self.t[self._hash(x)]
@@ -52,7 +55,8 @@ class ChainedHashTable(BaseSet):
             if y == x:
                 ell.remove_value(y)
                 self.n -= 1
-                if 3 * self.n < len(self.t): self._resize()
+                if 3 * self.n < len(self.t):
+                    self._resize()
                 return y
         return None
 
