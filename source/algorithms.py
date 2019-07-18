@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 
 def merge_sort(a):
@@ -27,3 +28,25 @@ def merge(a0, a1, a):
         else:
             a[i] = a1[i1]
             i1 += 1
+
+
+def quick_sort(a):
+    _quick_sort(a, 0, len(a))
+
+
+def _quick_sort(a, i, n):
+    if n <= 1: return
+    x = a[i + random.randrange(n)]
+    p, j, q = i - 1, i, i + n
+    while j < q:
+        if a[j] < x:
+            p += 1
+            a[j], a[p] = a[p], a[j]
+            j += 1
+        elif a[j] > x:
+            q -= 1
+            a[j], a[q] = a[q], a[j]
+        else:
+            j += 1
+    _quick_sort(a, i, p-i+1)
+    _quick_sort(a, q, n-(q-i))
