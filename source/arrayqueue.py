@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from utils import new_array
-from base import BaseList
+from base import BaseSet
 
 
-class ArrayQueue(BaseList):
+class ArrayQueue(BaseSet):
     def __init__(self, iterable=[]):
         self._initialize()
         self.add_all(iterable)
@@ -30,6 +30,10 @@ class ArrayQueue(BaseList):
     def _resize(self):
         b = new_array(max(1, 2*self.n))
         for k in range(self.n):
-            b[k] = self.a[(self.j + k) & len(self.a)]
+            b[k] = self.a[(self.j + k) % len(self.a)]
         self.a = b
         self.j = 0
+
+    def __iter__(self):
+        for i in range(self.n):
+            yield self.a[i]
