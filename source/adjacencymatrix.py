@@ -8,7 +8,7 @@ Cons
 """
 
 
-class AdjacentyMatrix(object):
+class AdjacencyMatrix(object):
     def __init__(self, n):
         self.n = n
         self._initialize()

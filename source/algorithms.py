@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import random
+from utils import new_boolean_array
+from sllist import SLList
 
 
 def merge_sort(a):
@@ -39,6 +41,7 @@ def _quick_sort(a, i, n):
     x = a[i + random.randrange(n)]
     p, j, q = i - 1, i, i + n
     while j < q:
+        print(x, a)
         if a[j] < x:
             p += 1
             a[j], a[p] = a[p], a[j]
@@ -50,3 +53,17 @@ def _quick_sort(a, i, n):
             j += 1
     _quick_sort(a, i, p-i+1)
     _quick_sort(a, q, n-(q-i))
+
+
+def bfs(g, r):
+    seen = new_boolean_array(g.n)
+    q = SLList()
+    q.push(r)
+    seen[r] = True
+    while q.size() > 0:
+        i = q.pop()
+        for j in g.out_edges(i):
+            if seen[j] == False:
+                q.push(j)
+                seen[j] = True
+    print(seen)
